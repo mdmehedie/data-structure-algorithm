@@ -1,13 +1,13 @@
 class List {
-    //Initialization the list
-    constructor(){
-        this.listSize = 0;
-        this.items = 0;
-    }
-    // Add item the list
+  //Initialization the list
+  constructor() {
+    this.listSize = 0;
+    this.items = [];
+  }
+  // Add item the list
   append = (element) => {
     this.items[this.listSize++] = element;
-  }
+  };
 
   //Finding the item from list
   find = (element) => {
@@ -29,7 +29,7 @@ class List {
       }
     }
     return -1;
-  }
+  };
 
   //Removing item from list
   remove = (element) => {
@@ -42,7 +42,7 @@ class List {
     }
 
     return false;
-  }
+  };
 
   //Insert item after the spacifiq posistion
   insert = (element, after) => {
@@ -56,19 +56,19 @@ class List {
     }
 
     return false;
-  }
+  };
 
   //Check if presemt in list
   contains = (element) => {
     let index = this.find(element);
 
     return index > -1 ? true : false;
-  }
+  };
 
   //Print all items of the list
   print = () => {
     return this.items.join(', ');
-  }
+  };
 }
 
 let list = new List();
