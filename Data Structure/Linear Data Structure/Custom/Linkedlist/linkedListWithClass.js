@@ -11,20 +11,6 @@ class Linkedlist {
   }
 
   append = (ele) => {
-    let node = new Node(ele),
-      current;
-
-    if (head === null) {
-      head = node;
-    } else {
-      current = next;
-      while (current.next) {
-        current = current.next;
-      }
-      current.next = node;
-    }
-
-    length++;
   };
 
   toString = () => {
