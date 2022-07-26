@@ -24,10 +24,12 @@ class Node {
 
 class doublyLinkedlist {
     public:
+        int len;
         Node* head ;
         Node* tail;
     
     doublyLinkedlist(){
+        len = 0;
         head = NULL;
         tail = NULL;
     }
@@ -39,15 +41,51 @@ class doublyLinkedlist {
     void append(int d){
         Node* node = new Node(d);
         if(head == NULL){
-            node->next = NULL;
-            node->prev = NULL;
             head = node;
             tail = node;
+            len++;
         }else{
-            node->next = NULL;
             node->prev = tail;
             tail->next = node;
             tail = node;
+            len++;
+        }
+    }
+    
+    void insert (int pos, int data){
+        if(pos >=0 && pos <= len){
+          Node* node = new Node(data);
+          Node* current = head;
+          Node* previous;
+          int index = 0;
+          
+          if(pos == 0){
+            if(current != NULL){
+              head = node;
+              tail = node;
+            }else{
+              node->next = current;
+              current->prev = node;
+              head = node;
+            }
+          }else if(pos == len){
+            tail->next = node;
+            node->prev = tail;
+            tail = node;
+          }else{
+            while(index++ <pos){
+              previous = current;
+              current = current->next;
+            }
+            node->next = current;
+            current->prev = node;
+            previous->next = node;
+            node->prev = previous;
+          }
+          
+          len++;
+        }else{
+          cout<<"Position is over linkedlist length"<<endl;
         }
     }
     
@@ -61,6 +99,7 @@ class doublyLinkedlist {
                 traverser = traverser->next;
             }
         }
+        cout<<"Linked List length = "<<len<<endl;
     }
 };
 
@@ -69,6 +108,9 @@ int main()
    doublyLinkedlist obj;
    obj.append(5);
    obj.append(9);
+   obj.append(12);
+   obj.append(28);
+   obj.insert(4,10);
    
    obj.printList();
     
