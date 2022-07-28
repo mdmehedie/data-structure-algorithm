@@ -135,6 +135,20 @@ function linkedList() {
     return arr;
   };
 
+  this.reverList = () =>{
+    let current = this.head, prevNode = null, nextNode = this.head;
+    
+    while(nextNode != null){
+        nextNode = nextNode.next;
+        current.next = prevNode;
+        prevNode = current;
+        current = nextNode;
+    }
+    this.head = prevNode;
+    
+    return this.head;
+  }
+
   //Return list as string
   this.toString = () => {
     let current = this.head;
@@ -163,8 +177,9 @@ function linkedList() {
 let ll = new linkedList();
 ll.append('Hello');
 ll.append(34);
-console.log(ll.removeAt(1));
+ll.append(4);
+ll.append(54);
 ll.print();
-
-ll.deleteHead();
+console.log("\n");
+ll.reverList();
 ll.print();

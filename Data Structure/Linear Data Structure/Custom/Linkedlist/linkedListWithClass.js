@@ -11,6 +11,7 @@ class Linkedlist {
   }
 
   append = (ele) => {
+    
   };
 
   toString = () => {
