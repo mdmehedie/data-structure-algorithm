@@ -81,6 +81,43 @@ class BinarySearchTree {
         return null;
     }
 
+
+    remove = (key) =>{
+        root = removeNode(root, key);
+    }
+
+    removeNode = (node, key) =>{
+        if(node === null){
+            return null;
+        }
+
+        if(key < node.key){
+            node.left = this.removeNode(node.left, key);
+            return node;
+        }else if(key > node.key){
+            node.right = this.removeNode(node.right, key);
+            return node;
+        }else{
+            if(node.left === null && node.right === null){
+                node = null;
+                return node;
+            }
+        }
+
+        if(node.left === null){
+            node = node.right;
+            return node;
+        }else if( node.left === null){
+            node = node.left;
+            return node;
+        }
+
+        let temp = this.min(node.right, key);
+        node.key = temp.key;
+        node.right = this.removeNode(node.right, temp.key);
+        return node;
+    }
+
     printTree = (order) => {
         if (order === "in") {
             let data = [];

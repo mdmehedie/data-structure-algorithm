@@ -51,6 +51,59 @@ const BinarySearchTree = function (){
 
     }
 
+    this.min = (node = this.root) =>{
+
+        if(node){
+            while(node && node.left !== null){
+                node = node.left;
+            }
+
+            return node.data;
+        }
+
+        return null;
+    }
+
+    this.remove = (key) =>{
+        root = removeNode(root, key);
+    }
+
+    const removeNode = (node, key) =>{
+        if(node === null){
+            return node;
+        }
+
+        if(key < node.data){
+            node.left = removeNode(node.left, key);
+            return node;
+        }else if(key > node.data){
+            node.right = removeNode(node.right, key);
+            return node;
+        }else{
+
+            if(node.left === null && node.right === null){
+                node = null;
+                return node;
+            }
+        }
+
+        if(node.left === null){
+            node = node.right;
+            return node;
+        }else if(node.right === null){
+            node = node.left;
+            return node;
+        }
+
+
+        let temp = this.min(node.right);
+        node.key = temp.key;
+        node.right = removeNode(node.right);
+
+        return node;
+
+    }
+
 
 
     this.printTree = (order) =>{
@@ -102,6 +155,9 @@ const BinarySearchTree = function (){
     }
 
 
+    
+
+
 }
 
 const tree = new BinarySearchTree();
@@ -123,3 +179,6 @@ tree.insert(25);
 tree.printTree("in");
 tree.printTree("pre");
 tree.printTree("pos");
+
+
+tree.remove(14);
